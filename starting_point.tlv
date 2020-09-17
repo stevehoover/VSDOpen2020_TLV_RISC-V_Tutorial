@@ -2,7 +2,7 @@
 \SV
    // This code can be found in: https://github.com/stevehoover/VSDOpen2020_TLV_RISC-V_Tutorial
    
-   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/VSDOpen2020_TLV_RISC-V_Tutorial/e7970e9d04aaa47efca0ba35c14304a48a0cde40/lib/shell.tlv'])
+   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/VSDOpen2020_TLV_RISC-V_Tutorial/286715b41d68c1854fb5d1944bbc8dd1bd2f6470/lib/shell.tlv'])
 
 \SV
    m4_makerchip_module   // (Expanded in Nav-TLV pane.)
@@ -10,6 +10,9 @@
 
 \TLV
 
+   
+   // ------------------------------------------------------------
+   //
    // /====================\
    // | Sum 1 to 9 Program |
    // \====================/
@@ -34,88 +37,82 @@
    m4_asm(ADDI, r13, r13, 1)            // Increment intermediate register by 1
    m4_asm(BLT, r13, r12, 1111111111000) // If x13 is less than x12, branch to <loop>
    m4_asm(ADD, r10, r14, r0)            // Store final result to register x10 so that it can be read by main program
+   //
+   // ------------------------------------------------------------
    
    
-   //m4_define(['TBD'], [''0'])
-   //m4_define(['TBDX'], [''])
-   m4_define(['TBD'], ['$*'])
-   m4_define(['TBDX'], ['$*'])
-   
-   |view
-      @0
-         `BOGUS_USE($pc[4:0])
    // Lab: PC
    $pc[31:0] = >>1$reset        ? 32'0 :
                >>1$taken_branch ? >>1$br_target_pc :    // (initially $taken_branch == 0)
-                                  TBD(>>1$pc + 32'b100);
+                                  TBD;
    
    
    // Lab: Fetch
-   $imem_rd_addr[2:0] = TBD($pc[4:2]);
-   $instr[31:0] = TBD($imem_rd_data);
+   $imem_rd_addr[2:0] = TBD;
+   $instr[31:0] = TBD;
    
    
    // Lab: Instruction Types Decode
    $is_i_instr = $instr[6:5] == 2'b00;
-   $is_r_instr = TBD($instr[6:5] == 2'b01 || $instr[6:5] == 2'b10);
-   $is_b_instr = TBD($instr[6:5] == 2'b11);
+   $is_r_instr = TBD;
+   $is_b_instr = TBD;
    
    
    // Lab: Instruction Immediate Decode
    $imm[31:0]  = $is_i_instr ? { {21{$instr[31]}}, $instr[30:20] } :   // I-type
-                 TBDX($is_b_instr ? { {20{$instr[31]}}, $instr[7], $instr[30:25], $instr[11:8], 1'b0 } :)    // B-type
+                 //TBD    // B-type
                  32'b0;   // Default (unused)
    
    
    // Lab: Instruction Field Decode
    $rs2[4:0]    = $instr[24:20];
-   $rs1[4:0]    = TBD($instr[19:15]);
-   $funct3[2:0] = TBD($instr[14:12]);
-   $rd[4:0]     = TBD($instr[11:7]);
-   $opcode[6:0] = TBD($instr[6:0]);
+   $rs1[4:0]    = TBD;
+   $funct3[2:0] = TBD;
+   $rd[4:0]     = TBD;
+   $opcode[6:0] = TBD;
    
    
    // Lab: Register Validity Decode
    $rs1_valid = $is_r_instr || $is_i_instr || $is_b_instr;
-   $rs2_valid = TBD($is_r_instr || $is_b_instr);
-   $rd_valid  = TBD($is_r_instr || $is_i_instr);
+   $rs2_valid = TBD;
+   $rd_valid  = TBD;
    
    
    // Lab: Instruction Decode
    $dec_bits[9:0] = {$funct3, $opcode};
    $is_blt  = $dec_bits == 10'b100_1100011;
-   $is_addi = TBD($dec_bits == 10'b000_0010011);
-   $is_add  = TBD($dec_bits == 10'b000_0110011);
+   $is_addi = TBD;
+   $is_add  = TBD;
    
    
    // Lab: Register File Read
-   $rf_rd_en1         = TBD($rs1_valid);
-   $rf_rd_en2         = TBD($rs2_valid);
-   $rf_rd_index1[4:0] = TBD($rs1);
-   $rf_rd_index2[4:0] = TBD($rs2);
+   $rf_rd_en1         = TBD;
+   $rf_rd_en2         = TBD;
+   $rf_rd_index1[4:0] = TBD;
+   $rf_rd_index2[4:0] = TBD;
    
-   $src1_value[31:0] = TBD($rf_rd_data1);
-   $src2_value[31:0] = TBD($rf_rd_data2);
+   $src1_value[31:0] = TBD;
+   $src2_value[31:0] = TBD;
    
    
    // Lab: ALU
    $result[31:0] = $is_addi ? $src1_value + $imm :    // ADDI: src1 + imm
-                   TBDX($is_add  ? $src1_value + $src2_value :)   // ADD: src1 + src2
+                   //TBD   // ADD: src1 + src2
                               32'b0;   // Default (unused)
    
    
    // Lab: Register File Write
-   $rf_wr_en         = TBD($rd_valid /* && $rd != 5'b0 */);
-   $rf_wr_index[4:0] = TBD($rd);
-   $rf_wr_data[31:0] = TBD($result);
+   $rf_wr_en         = TBD;
+   $rf_wr_index[4:0] = TBD;
+   $rf_wr_data[31:0] = TBD;
    
    
    // Lab: Branch Condition
-   $taken_branch = TBD($is_blt ?  ($src1_value < $src2_value) /* ^ ($src1_value[31] != $src2_value[31]) */  : 1'b0);
+   $taken_branch = TBD;
    
    
    // Lab: Branch Target
-   $br_target_pc[31:0] = TBD($pc + $imm);
+   $br_target_pc[31:0] = TBD;
    // $taken_branch and $br_target_pc control the PC mux.
    
    
