@@ -10,4 +10,4 @@ As you listen to videos and do the lab assignments, follow along in [the slides]
 
 Use a link below to open the starting-point code for the CPU labs. Choose a link based on the month of your birth to help us distribute the load, and use "Open link in new tab" from the right-click pull-down menu.
 
-<a href="https://vsdopen1.makerchip.com/sandbox?code_url=https:%2F%2Fraw.githubusercontent.com%2Fstevehoover%2FVSDOpen2020_TLV_RISC-V_Tutorial%2Fmaster%2Fstarting_point.tlv" target="_blank" atom_fix="_">Jan-Dec</a>
+<a href="https://myth2.makerchip.com/sandbox?code_url=https:%2F%2Fraw.githubusercontent.com%2Fstevehoover%2FVSDOpen2020_TLV_RISC-V_Tutorial%2Fmaster%2Fstarting_point.tlv" target="_blank" atom_fix="_">Jan-Dec</a>
