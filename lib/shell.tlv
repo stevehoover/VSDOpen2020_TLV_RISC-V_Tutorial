@@ -61,9 +61,9 @@ m4+definitions(['
                                $is_addi ? "ADDI      " :
                                $is_add  ? "ADD       " :  "UNKNOWN   ";
          $valid = ! $reset;
+         `BOGUS_USE($pc[4:0])  // Bug workaround to pull lower bits.
          $fetch_instr_str[40*8-1:0] = *instr_strs\[$pc[\$clog2(M4_NUM_INSTRS+1)+1:2]\];
          \viz_alpha
-            //
             initEach() {
                let imem_header = new fabric.Text("Instr. Memory", {
                      top: -29,
