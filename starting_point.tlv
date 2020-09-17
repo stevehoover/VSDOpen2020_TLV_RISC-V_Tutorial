@@ -2,7 +2,7 @@
 \SV
    // This code can be found in: https://github.com/stevehoover/VSDOpen2020_TLV_RISC-V_Tutorial
    
-   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/RISC-V_MYTH_Workshop/c1719d5b338896577b79ee76c2f443ca2a76e14f/tlv_lib/risc-v_shell_lib.tlv'])
+   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/VSDOpen2020_TLV_RISC-V_Tutorial/e7970e9d04aaa47efca0ba35c14304a48a0cde40/lib/shell.tlv'])
 
 \SV
    m4_makerchip_module   // (Expanded in Nav-TLV pane.)
@@ -41,7 +41,9 @@
    m4_define(['TBD'], ['$*'])
    m4_define(['TBDX'], ['$*'])
    
-   
+   |view
+      @0
+         `BOGUS_USE($pc[4:0])
    // Lab: PC
    $pc[31:0] = >>1$reset        ? 32'0 :
                >>1$taken_branch ? >>1$br_target_pc :    // (initially $taken_branch == 0)
@@ -119,11 +121,6 @@
    
    
    m4+shell()
-   
-   // ============================================================================================================
-   
-   // The stage that is represented by visualization.
-   
 
 
 \SV
