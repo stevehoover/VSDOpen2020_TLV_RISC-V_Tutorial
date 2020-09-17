@@ -4,10 +4,7 @@ For students of the VSDOpen2020 TL-Verilog RISC-V Tutorial, by Redwood EDA.
 
 # Slides
 
-As you listen to videos and do the lab assignments, follow along in the slides. Comments may have been added in real time to address points of confusion.
-
-  - [Day 3 Slides](https://drive.google.com/file/d/1ZcjLzg-53It4CO3jDLofiUPZJ485JZ_g/view?usp=sharing)
-  - [Day 4 - 5 Slides](https://drive.google.com/file/d/1tqvXmFru31-tezDX30jTNJoLcQk308UM/view?usp=sharing)
+As you listen to videos and do the lab assignments, follow along in [the slides](https://drive.google.com/file/d/1ZcjLzg-53It4CO3jDLofiUPZJ485JZ_g/view?usp=sharing). Comments may have been added in real time to address points of confusion.
 
 ## Starting-point code
 
