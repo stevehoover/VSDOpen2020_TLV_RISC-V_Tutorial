@@ -44,7 +44,7 @@
    // Lab: PC
    $pc[31:0] = >>1$reset        ? 32'0 :
                >>1$taken_branch ? >>1$br_target_pc :    // (initially $taken_branch == 0)
-                                  TBD;
+                                  >>1$pc + 32'b1;
    
    
    // Lab: Fetch
