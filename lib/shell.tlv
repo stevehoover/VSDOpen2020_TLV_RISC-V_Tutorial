@@ -235,13 +235,19 @@ m4+definitions(['
             $rd = ! |view$reset && |view$pc[4:2] == #imem;
             \viz_alpha
                initEach() {
-                 let str = new fabric.Text("", {
+                 let binary = new fabric.Text("", {
                     top: 18 * this.getIndex(),  // TODO: Add support for '#instr_mem'.
                     left: -600,
                     fontSize: 14,
                     fontFamily: "monospace"
                  })
-                 return {objects: {str: str}}
+                 let disassembled = new fabric.Text("", {
+                    top: 18 * this.getIndex(),  // TODO: Add support for '#instr_mem'.
+                    left: -270,
+                    fontSize: 14,
+                    fontFamily: "monospace"
+                 })
+                 return {objects: {binary: binary, disassembled: disassembled}}
                },
                renderEach: function() {
                   // Instruction memory is constant, so just create it once.
@@ -250,13 +256,14 @@ m4+definitions(['
                   }
                   if (!global.instr_mem_drawn[this.getIndex()]) {
                      global.instr_mem_drawn[this.getIndex()] = true
-                     let instr_str = '$instr'.asBinaryStr(NaN).padEnd(39) + '$instr_str'.asString()
-                     instr_str = instr_str.slice(0, -5)
+                     let binary_str       = '$instr'.asBinaryStr(NaN)
+                     let disassembled_str = '$instr_str'.asString()
+                     disassembled_str = disassembled_str.slice(0, -5)
                      //debugger
-                     this.getInitObject("str").setText(instr_str)
-                     this.getCanvas().add(this.getInitObject("str"))
+                     this.getInitObject("binary").setText(binary_str)
+                     this.getInitObject("disassembled").setText(disassembled_str)
                   }
-                  this.getInitObject("str").set({textBackgroundColor: '$rd'.asBool() ? "#b0ffff" : "white"})
+                  this.getInitObject("disassembled").set({textBackgroundColor: '$rd'.asBool() ? "#b0ffff" : "white"})
                }
          /xreg[31:0]
             $ANY = /top/xreg<>0$ANY;
@@ -290,3 +297,4 @@ m4+definitions(['
                   }
                   return {objects: [reg_str]}
                }
+
