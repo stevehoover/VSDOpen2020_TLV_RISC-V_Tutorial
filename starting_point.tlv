@@ -80,7 +80,7 @@
    
    // Lab: Instruction Decode
    $dec_bits[9:0] = {$funct3, $opcode};
-   $is_blt  = $dec_bits == 10'b100_1100011;
+   $is_blt  = $dec_bits == 10'b1001100011;
    $is_addi = TBD;
    $is_add  = TBD;
    
