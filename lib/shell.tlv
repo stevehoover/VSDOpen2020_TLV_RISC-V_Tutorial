@@ -49,7 +49,7 @@ m4+definitions(['
    *failed = *cyc_cnt > 50;
    
    
-   |view
+   |for_viz_only
       @0
          // String representations of the instructions for debug.
          \SV_plus
@@ -232,7 +232,7 @@ m4+definitions(['
          // Register file
          //
          /imem[m4_eval(M4_NUM_INSTRS-1):0]  // TODO: Cleanly report non-integer ranges.
-            $rd = ! |view$reset && |view$pc[4:2] == #imem;
+            $rd = ! |for_viz_only$reset && |for_viz_only$pc[4:2] == #imem;
             \viz_alpha
                initEach() {
                  let binary = new fabric.Text("", {
@@ -267,8 +267,8 @@ m4+definitions(['
                }
          /xreg[31:0]
             $ANY = /top/xreg<>0$ANY;
-            $rd = (|view$rf_rd_en1 && |view$rf_rd_index1 == #xreg) ||
-                  (|view$rf_rd_en2 && |view$rf_rd_index2 == #xreg);
+            $rd = (|for_viz_only$rf_rd_en1 && |for_viz_only$rf_rd_index1 == #xreg) ||
+                  (|for_viz_only$rf_rd_en2 && |for_viz_only$rf_rd_index2 == #xreg);
             \viz_alpha
                initEach: function() {
                   return {}  // {objects: {reg: reg}};
