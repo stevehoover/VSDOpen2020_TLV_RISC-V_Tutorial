@@ -8,9 +8,11 @@ As you listen to videos and do the lab assignments, follow along in [the slides]
 
 ## Starting-point code
 
-Use a link below to open the starting-point code for the CPU labs. Choose a link based on the month of your birth to help us distribute the load, and use "Open link in new tab" from the right-click pull-down menu.
+[comment]: <> (Use a link below to open the starting-point code for the CPU labs. Choose a link based on the month of your birth to help us distribute the load, and use "Open link in new tab" from the right-click pull-down menu.)
 
-<a href="https://myth2.makerchip.com/sandbox?code_url=https:%2F%2Fraw.githubusercontent.com%2Fstevehoover%2FVSDOpen2020_TLV_RISC-V_Tutorial%2Fmaster%2Fstarting_point.tlv" target="_blank" atom_fix="_">Jan-Dec</a>
+To begin the labs, right-click this <a href="https://myth2.makerchip.com/sandbox?code_url=https:%2F%2Fraw.githubusercontent.com%2Fstevehoover%2FVSDOpen2020_TLV_RISC-V_Tutorial%2Fmaster%2Fstarting_point.tlv" target="_blank" atom_fix="_">Starting-point code</a> and "open link in new tab".
+
+[comment]: <> (myth1 is also running, currently at half the capacity of myth2. In despiration, if you cannot reach me, you can provide a link similar to the one above for myth1.)
 
 ## After the Tutorial
 
