@@ -27,16 +27,16 @@
    //  r14 (a4): Sum
    // 
    // External to function:
-   m4_asm(ADD, r10, r0, r0)             // Initialize x10 to 0.
+   m4_asm(ADD, r10, r0, r0)             // Initialize r10 to 0.
    // Function:
-   m4_asm(ADD, r14, r10, r0)            // Initialize sum register x14 with 0x0
-   m4_asm(ADDI, r12, r10, 1010)         // Store count of 10 in register x12.
-   m4_asm(ADD, r13, r10, r0)            // Initialize intermediate sum register x13 with 0
+   m4_asm(ADD, r14, r10, r0)            // Initialize sum register r14 with 0x0
+   m4_asm(ADDI, r12, r10, 1010)         // Store count of 10 in register r12.
+   m4_asm(ADD, r13, r10, r0)            // Initialize intermediate sum register r13 with 0
    // Loop:
    m4_asm(ADD, r14, r13, r14)           // Incremental addition
    m4_asm(ADDI, r13, r13, 1)            // Increment intermediate register by 1
-   m4_asm(BLT, r13, r12, 1111111111000) // If x13 is less than x12, branch to <loop>
-   m4_asm(ADD, r10, r14, r0)            // Store final result to register x10 so that it can be read by main program
+   m4_asm(BLT, r13, r12, 1111111111000) // If r13 is less than r12, branch to <loop>
+   m4_asm(ADD, r10, r14, r0)            // Store final result to register rhttp://sexytitflash.com/show_pic.php?id=10806x10 so that it can be read by main program
    //
    // ------------------------------------------------------------
    
