@@ -36,7 +36,7 @@
    m4_asm(ADD, r14, r13, r14)           // Incremental addition
    m4_asm(ADDI, r13, r13, 1)            // Increment intermediate register by 1
    m4_asm(BLT, r13, r12, 1111111111000) // If r13 is less than r12, branch to <loop>
-   m4_asm(ADD, r10, r14, r0)            // Store final result to register rhttp://sexytitflash.com/show_pic.php?id=10806x10 so that it can be read by main program
+   m4_asm(ADD, r10, r14, r0)            // Store final result to register r10 so that it can be read by main program
    //
    // ------------------------------------------------------------
    
