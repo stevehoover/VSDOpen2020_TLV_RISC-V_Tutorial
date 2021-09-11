@@ -8,7 +8,7 @@ For students of the VSDOpen2020 TL-Verilog RISC-V Tutorial, by Redwood EDA.
 
 ## Course Videos
 
-Videos are available in this [YouTube playlist](https://www.youtube.com/playlist?list=PL5hpwuXY8XebJv7giIvVb69j7Te095J4-).
+Videos are available in YouTube. Right-click [this playlist](https://www.youtube.com/playlist?list=PL5hpwuXY8XebJv7giIvVb69j7Te095J4-) and "open in new tab".
 
 ## Slides
 
