@@ -21,13 +21,23 @@ As you listen to videos and do the lab assignments, you can follow along in thes
 To begin the labs, right-click this <a href="https://makerchip.com/sandbox?code_url=https:%2F%2Fraw.githubusercontent.com%2Fstevehoover%2FVSDOpen2020_TLV_RISC-V_Tutorial%2Fmaster%2Fstarting_point.tlv" target="_blank" atom_fix="_">starting-point code</a> and "open link in new tab".
 
 
+## Help
+
+For participants of ChipEXPO-2021, help is available. To ask questions:
+
+  - [Join the TL-Verilog Users' Slack Workspace](https://join.slack.com/t/tl-verilog-users/shared_invite/zt-4fatipnr-dmDgkbzrCe0ZRLOOVm89gA)
+  - Within the Workspace, add yourself to the `#chip-expo-2021` channel (hover over "Channels, click the '+', and "Browse Channels").
+  - Ask questions in Russian or English, they will be translated by the "Lingvanex Translator" plugin.
+
+
 ## After the Tutorial
 
 Some useful pointers for further exploration (right-click and "open in new tab"):
- - [Redwood EDA](https://redwoodeda.com)
- - Open-source TL-Verilog projects:
-   - [WARP-V TL-Verilog RISC-V CPU](https://github.com/stevehoover/warp-v)
-   - [1st CLaaS Framework for hardware acceleration of web/cloud applications](https://github.com/stevehoover/1st-CLaaS)
-   - [etc...](https://github.com/stevehoover)
- - Learn TL-Verilog in [Makerchip](https://makerchip.com)
+
+  - [Redwood EDA](https://redwoodeda.com)
+  - Open-source TL-Verilog projects:
+    - [WARP-V TL-Verilog RISC-V CPU](https://github.com/stevehoover/warp-v)
+    - [1st CLaaS Framework for hardware acceleration of web/cloud applications](https://github.com/stevehoover/1st-CLaaS)
+    - [etc...](https://github.com/stevehoover)
+  - Learn TL-Verilog in [Makerchip](https://makerchip.com)
  
