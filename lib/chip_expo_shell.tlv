@@ -51,7 +51,7 @@ m4+definitions(['
          
          // Assert these to end simulation (before Makerchip cycle limit).
          *passed = /xreg[10]>>1$value == (1+2+3+4+5+6+7+8+9);
-         *failed = *cyc_cnt > 50;
+         *failed = *cyc_cnt > 75;
          
          
    |for_viz_only
