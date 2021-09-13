@@ -45,8 +45,8 @@ m4+definitions(['
                            $wr        ? |cpu$rf_wr_data :
                                         $RETAIN;
       @_rf_rd
-         $rf_rd_data1[31:0] = /xreg[$rf_rd_index1]>>m4_stage_eval(@_rf_wr - @_rf_rd)$value;
-         $rf_rd_data2[31:0] = /xreg[$rf_rd_index2]>>m4_stage_eval(@_rf_wr - @_rf_rd)$value;
+         $rf_rd_data1[31:0] = /xreg[$rf_rd_index1]>>m4_stage_eval(@_rf_wr - @_rf_rd + 1)$value;
+         $rf_rd_data2[31:0] = /xreg[$rf_rd_index2]>>m4_stage_eval(@_rf_wr - @_rf_rd + 1)$value;
          `BOGUS_USE($rf_rd_data1 $rf_rd_data2)
          
          // Assert these to end simulation (before Makerchip cycle limit).
