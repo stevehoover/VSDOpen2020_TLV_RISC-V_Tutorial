@@ -68,7 +68,7 @@ m4+definitions(['
          $mnemonic[10*8-1:0] = $is_blt  ? "BLT       " :
                                $is_addi ? "ADDI      " :
                                $is_add  ? "ADD       " :  "UNKNOWN   ";
-         $valid = ! $reset;
+         //$valid = ! $reset;
          `BOGUS_USE($pc[4:0])  // Bug workaround to pull lower bits.
          $fetch_instr_str[40*8-1:0] = *instr_strs\[$pc[\$clog2(M4_NUM_INSTRS+1)+1:2]\];
          \viz_alpha
