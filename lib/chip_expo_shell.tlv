@@ -128,7 +128,7 @@ m4+definitions(['
                let rd_arrow = new fabric.Line([330, 18 * '$rf_wr_index'.asInt() + 6 - 40, 168, 75 + 18 * 0], {
                   stroke: "#d0d0ff",
                   strokeWidth: 3,
-                  visible: '$rf_wr_en'.asBool()
+                  visible: '$rf_wr_en'.asBool() && '$valid'.asBool()
                })
                //
                // Fetch Instruction
@@ -167,7 +167,7 @@ m4+definitions(['
                let fetch_instr = new fabric.Text('$fetch_instr_str'.asString(), {
                   top: 18 * ($pc.asInt() / 4),
                   left: -272,
-                  fill: "blue",
+                  fill: color,
                   fontSize: 14,
                   fontFamily: "monospace"
                })
@@ -179,7 +179,7 @@ m4+definitions(['
                let src1_value = new fabric.Text('$src1_value'.asInt(0).toString(), {
                   left: 316 + 8 * 4,
                   top: 18 * '$rs1'.asInt(0) - 40,
-                  fill: "blue",
+                  fill: color,
                   fontSize: 14,
                   fontFamily: "monospace",
                   fontWeight: 800,
@@ -192,7 +192,7 @@ m4+definitions(['
                let src2_value = new fabric.Text('$src2_value'.asInt(0).toString(), {
                   left: 316 + 8 * 4,
                   top: 18 * '$rs2'.asInt(0) - 40,
-                  fill: "blue",
+                  fill: color,
                   fontSize: 14,
                   fontFamily: "monospace",
                   fontWeight: 800,
@@ -214,13 +214,13 @@ m4+definitions(['
                let result = new fabric.Text('$result'.asInt(0).toString(), {
                   left: 146,
                   top: 70,
-                  fill: "blue",
+                  fill: color,
                   fontSize: 14,
                   fontFamily: "monospace",
                   fontWeight: 800,
                   visible: false
                })
-               if ('$rd_valid'.asBool()) {
+               if ('$rd_valid'.asBool() && '$valid'.asBool()) {
                   setTimeout(() => {
                      result.setVisible(true)
                      result_shadow.setVisible(true)
