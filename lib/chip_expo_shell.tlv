@@ -22,35 +22,37 @@ m4+definitions(['
    m4_define_hier(['M4_IMEM'], M4_NUM_INSTRS)
    
    
-   $reset = *reset;
-   
-   // Instruction Memory containing program defined by m4_asm(...) instantiations.
-   \SV_plus
-      // The program in an instruction memory.
-      logic [31:0] instrs [0:8-1];
-      assign instrs = '{
-         m4_instr0['']m4_forloop(['m4_instr_ind'], 1, M4_NUM_INSTRS, [', m4_echo(['m4_instr']m4_instr_ind)'])
-      };
-   /M4_IMEM_HIER
-      $instr[31:0] = *instrs\[#imem\];
-   $imem_rd_data[31:0] = /imem[$imem_rd_addr]$instr;
-   `BOGUS_USE($imem_rd_data)
-   
-   // Reg File
-   /xreg[31:0]
-      $wr = |cpu$rf_wr_en && (|cpu$rf_wr_index != 5'b0) && (|cpu$rf_wr_index == #xreg);
-      $value[31:0] = |cpu$reset ? 32'b0           :
-                     $wr        ? |cpu$rf_wr_data :
-                                  $RETAIN;
-   $rf_rd_data1[31:0] = /xreg[$rf_rd_index1]>>1$value;
-   $rf_rd_data2[31:0] = /xreg[$rf_rd_index2]>>1$value;
-   `BOGUS_USE($rf_rd_data1 $rf_rd_data2)
-   
-   // Assert these to end simulation (before Makerchip cycle limit).
-   *passed = /xreg[10]>>1$value == (1+2+3+4+5+6+7+8+9);
-   *failed = *cyc_cnt > 50;
-   
-   
+   |cpu
+      @0
+         $reset = *reset;
+         
+         // Instruction Memory containing program defined by m4_asm(...) instantiations.
+         \SV_plus
+            // The program in an instruction memory.
+            logic [31:0] instrs [0:8-1];
+            assign instrs = '{
+               m4_instr0['']m4_forloop(['m4_instr_ind'], 1, M4_NUM_INSTRS, [', m4_echo(['m4_instr']m4_instr_ind)'])
+            };
+         /M4_IMEM_HIER
+            $instr[31:0] = *instrs\[#imem\];
+         $imem_rd_data[31:0] = /imem[$imem_rd_addr]$instr;
+         `BOGUS_USE($imem_rd_data)
+         
+         // Reg File
+         /xreg[31:0]
+            $wr = |cpu$rf_wr_en && (|cpu$rf_wr_index != 5'b0) && (|cpu$rf_wr_index == #xreg);
+            $value[31:0] = |cpu$reset ? 32'b0           :
+                           $wr        ? |cpu$rf_wr_data :
+                                        $RETAIN;
+         $rf_rd_data1[31:0] = /xreg[$rf_rd_index1]>>1$value;
+         $rf_rd_data2[31:0] = /xreg[$rf_rd_index2]>>1$value;
+         `BOGUS_USE($rf_rd_data1 $rf_rd_data2)
+         
+         // Assert these to end simulation (before Makerchip cycle limit).
+         *passed = /xreg[10]>>1$value == (1+2+3+4+5+6+7+8+9);
+         *failed = *cyc_cnt > 50;
+         
+         
    |for_viz_only
       @0
          // String representations of the instructions for debug.
