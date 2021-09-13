@@ -15,7 +15,7 @@ m4+definitions(['
    m4_define(['TBD'], [''0'])
 
 '])
-\TLV shell()
+\TLV shell(@_stage)
    // =======================================================================================================
    // THIS CODE IS PROVIDED. NO NEED TO LOOK BEHIND THE CURTAIN. LEARN MORE USING THE MAKERCHIP TUTORIALS.
    
@@ -23,7 +23,7 @@ m4+definitions(['
    
    
    |cpu
-      @0
+      @_stage
          $reset = *reset;
          
          // Instruction Memory containing program defined by m4_asm(...) instantiations.
@@ -54,7 +54,7 @@ m4+definitions(['
          
          
    |for_viz_only
-      @0
+      @_stage
          // String representations of the instructions for debug.
          \SV_plus
             logic [40*8-1:0] instr_strs [0:M4_NUM_INSTRS];
