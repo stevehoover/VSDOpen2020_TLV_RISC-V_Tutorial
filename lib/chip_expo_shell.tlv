@@ -15,7 +15,7 @@ m4+definitions(['
    m4_define(['TBD'], [''0'])
 
 '])
-\TLV shell(@_stage)
+\TLV shell(@_viz, @_imem, @_rf_rd, @_rf_wr)
    // =======================================================================================================
    // THIS CODE IS PROVIDED. NO NEED TO LOOK BEHIND THE CURTAIN. LEARN MORE USING THE MAKERCHIP TUTORIALS.
    
@@ -23,10 +23,10 @@ m4+definitions(['
    
    
    |cpu
-      @_stage
+      @0
          $reset = *reset;
-         
          // Instruction Memory containing program defined by m4_asm(...) instantiations.
+      @_imem
          \SV_plus
             // The program in an instruction memory.
             logic [31:0] instrs [0:8-1];
@@ -37,15 +37,16 @@ m4+definitions(['
             $instr[31:0] = *instrs\[#imem\];
          $imem_rd_data[31:0] = /imem[$imem_rd_addr]$instr;
          `BOGUS_USE($imem_rd_data)
-         
+      @_rf_wr
          // Reg File
          /xreg[31:0]
             $wr = |cpu$rf_wr_en && (|cpu$rf_wr_index != 5'b0) && (|cpu$rf_wr_index == #xreg);
             $value[31:0] = |cpu$reset ? 32'b0           :
                            $wr        ? |cpu$rf_wr_data :
                                         $RETAIN;
-         $rf_rd_data1[31:0] = /xreg[$rf_rd_index1]>>1$value;
-         $rf_rd_data2[31:0] = /xreg[$rf_rd_index2]>>1$value;
+      @_rf_rd
+         $rf_rd_data1[31:0] = /xreg[$rf_rd_index1]>>m4_stage_eval(@_rf_wr - @_rf_rd)$value;
+         $rf_rd_data2[31:0] = /xreg[$rf_rd_index2]>>m4_stage_eval(@_rf_wr - @_rf_rd)$value;
          `BOGUS_USE($rf_rd_data1 $rf_rd_data2)
          
          // Assert these to end simulation (before Makerchip cycle limit).
@@ -54,7 +55,7 @@ m4+definitions(['
          
          
    |for_viz_only
-      @_stage
+      @_viz
          // String representations of the instructions for debug.
          \SV_plus
             logic [40*8-1:0] instr_strs [0:M4_NUM_INSTRS];
