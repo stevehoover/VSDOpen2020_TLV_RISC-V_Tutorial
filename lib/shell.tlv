@@ -217,8 +217,8 @@ m4+definitions(['
                })
                if ('$rd_valid'.asBool()) {
                   setTimeout(() => {
-                     result.setVisible(true)
-                     result_shadow.setVisible(true)
+                     result.set({visible: true})
+                     result_shadow.set({visible: true})
                      result.animate({left: 317 + 8 * 4, top: 18 * '$rd'.asInt(0) - 40}, {
                        onChange: this.global.canvas.renderAll.bind(this.global.canvas),
                        duration: 500
@@ -260,8 +260,8 @@ m4+definitions(['
                      let disassembled_str = '$instr_str'.asString()
                      disassembled_str = disassembled_str.slice(0, -5)
                      //debugger
-                     this.getInitObject("binary").setText(binary_str)
-                     this.getInitObject("disassembled").setText(disassembled_str)
+                     this.getInitObject("binary").set({text: binary_str})
+                     this.getInitObject("disassembled").set({text: disassembled_str})
                   }
                   this.getInitObject("disassembled").set({textBackgroundColor: '$rd'.asBool() ? "#b0ffff" : "white"})
                }
