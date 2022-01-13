@@ -66,8 +66,9 @@ m4+definitions(['
          $valid = ! $reset;
          `BOGUS_USE($pc[4:0])  // Bug workaround to pull lower bits.
          $fetch_instr_str[40*8-1:0] = *instr_strs\[$pc[\$clog2(M4_NUM_INSTRS+1)+1:2]\];
-         \viz_alpha
-            initEach() {
+         \viz_js
+            box: {strokeWidth: 0},
+            init() {
                let imem_header = new fabric.Text("Instr. Memory", {
                      top: -29,
                      left: -440,
@@ -89,9 +90,9 @@ m4+definitions(['
                      fontWeight: 800,
                      fontFamily: "monospace"
                   })
-               return {objects: {imem_header, decode_header, rf_header}};
+               return {imem_header, decode_header, rf_header}
             },
-            renderEach: function() {
+            render() {
                //debugger
                //
                // PC instr_mem pointer
@@ -226,62 +227,55 @@ m4+definitions(['
                   }, 1000)
                }
                
-               return {objects: [pcPointer, pc_arrow, rs1_arrow, rs2_arrow, rd_arrow, instrWithValues, fetch_instr, src1_value, src2_value, result_shadow, result]};
+               return [pcPointer, pc_arrow, rs1_arrow, rs2_arrow, rd_arrow, instrWithValues, fetch_instr, src1_value, src2_value, result_shadow, result]
             }
          //
          // Register file
          //
          /imem[m4_eval(M4_NUM_INSTRS-1):0]  // TODO: Cleanly report non-integer ranges.
             $rd = ! |for_viz_only$reset && |for_viz_only$pc[4:2] == #imem;
-            \viz_alpha
-               initEach() {
+            \viz_js
+               box: {width: 400, height: 18, left: -600, top: 0, strokeWidth: 0},
+               init() {
                  let binary = new fabric.Text("", {
-                    top: 18 * this.getIndex(),  // TODO: Add support for '#instr_mem'.
+                    top: 0,
                     left: -600,
                     fontSize: 14,
                     fontFamily: "monospace"
                  })
                  let disassembled = new fabric.Text("", {
-                    top: 18 * this.getIndex(),  // TODO: Add support for '#instr_mem'.
+                    top: 0,
                     left: -270,
                     fontSize: 14,
                     fontFamily: "monospace"
                  })
-                 return {objects: {binary: binary, disassembled: disassembled}}
+                 return {binary, disassembled}
                },
-               renderEach: function() {
-                  // Instruction memory is constant, so just create it once.
-                  if (!global.instr_mem_drawn) {
-                     global.instr_mem_drawn = [];
-                  }
-                  if (!global.instr_mem_drawn[this.getIndex()]) {
-                     global.instr_mem_drawn[this.getIndex()] = true
-                     let binary_str       = '$instr'.asBinaryStr(NaN)
-                     let disassembled_str = '$instr_str'.asString()
-                     disassembled_str = disassembled_str.slice(0, -5)
-                     //debugger
-                     this.getInitObject("binary").set({text: binary_str})
-                     this.getInitObject("disassembled").set({text: disassembled_str})
-                  }
-                  this.getInitObject("disassembled").set({textBackgroundColor: '$rd'.asBool() ? "#b0ffff" : "white"})
+               onTraceData() {
+                  // Instruction memory is constant, so just create it once
+                  let binary_str       = '$instr'.asBinaryStr(NaN)
+                  let disassembled_str = '$instr_str'.asString()
+                  disassembled_str = disassembled_str.slice(0, -5)
+                  this.getObjects().binary.set({text: binary_str})
+                  this.getObjects().disassembled.set({text: disassembled_str})
+               },
+               render() {
+                  this.getObjects().disassembled.set({textBackgroundColor: '$rd'.asBool() ? "#b0ffff" : "white"})
                }
          /xreg[31:0]
             $ANY = /top/xreg<>0$ANY;
             $rd = (|for_viz_only$rf_rd_en1 && |for_viz_only$rf_rd_index1 == #xreg) ||
                   (|for_viz_only$rf_rd_en2 && |for_viz_only$rf_rd_index2 == #xreg);
-            \viz_alpha
-               initEach: function() {
-                  return {}  // {objects: {reg: reg}};
-               },
-               renderEach: function() {
+            \viz_js
+               box: {width: 100, height: 18, strokeWidth: 0},
+               render() {
                   let rd = '$rd'.asBool(false);
                   let mod = '$wr'.asBool(false);
                   let reg = parseInt(this.getIndex());
                   let regIdent = reg.toString().padEnd(2, " ");
                   let newValStr = regIdent + ": " + (mod ? '$value'.asInt(NaN).toString() : "");
                   let reg_str = new fabric.Text(regIdent + ": " + '>>1$value'.asInt(NaN).toString(), {
-                     top: 18 * this.getIndex() - 40,
-                     left: 316,
+                     top: 0, left: 0,
                      fontSize: 14,
                      fill: mod ? "blue" : "black",
                      fontWeight: mod ? 800 : 400,
@@ -295,6 +289,6 @@ m4+definitions(['
                         this.global.canvas.renderAll()
                      }, 1500)
                   }
-                  return {objects: [reg_str]}
-               }
-
+                  return [reg_str]
+               },
+               where: {left: 316, top: -40}
