@@ -42,7 +42,7 @@
    
    
    // PC
-   $pc[31:0] = >>1$reset        ? 32'0 :
+   $pc[31:0] = >>1$reset        ? 32'b0 :
                >>1$taken_branch ? >>1$br_target_pc :    // (initially $taken_branch == 0)
                                   >>1$pc + 32'b100;
    
